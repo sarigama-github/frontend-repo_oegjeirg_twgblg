@@ -1,41 +1,47 @@
-import { Menu, Github, Shield } from "lucide-react";
+import { Menu, Github, Flame, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/70 border-b border-slate-200/60">
+    <header className="fixed top-0 left-0 right-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-md bg-gradient-to-tr from-indigo-600 via-blue-500 to-cyan-400 shadow-sm" />
-          <span className="text-slate-900 font-semibold text-lg tracking-tight">FlameWire</span>
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <div className="h-8 w-8 rounded-md bg-gradient-to-tr from-red-600 via-orange-500 to-amber-400 glow-red-soft" />
+            <div className="absolute -inset-1 rounded-lg bg-gradient-to-tr from-red-600/20 via-orange-500/10 to-transparent blur-2xl -z-10" />
+          </div>
+          <span className="text-white font-semibold text-lg tracking-tight">FlameWire</span>
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-rose-300/90 px-2 py-0.5 rounded-full bg-rose-500/10 border border-rose-400/20">
+            <Sparkles className="h-3.5 w-3.5" /> v0.1 alpha
+          </span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-slate-700">
-          <a className="hover:text-slate-900 transition" href="#features">Features</a>
-          <a className="hover:text-slate-900 transition" href="#chains">Chains</a>
-          <a className="hover:text-slate-900 transition" href="#pricing">Pricing</a>
-          <a className="hover:text-slate-900 transition" href="#cta">Get Started</a>
+        <div className="hidden md:flex items-center gap-8 text-slate-300">
+          <a className="hover:text-white transition" href="#features">Features</a>
+          <a className="hover:text-white transition" href="#chains">Chains</a>
+          <a className="hover:text-white transition" href="#pricing">Pricing</a>
+          <a className="hover:text-white transition" href="#cta">Get Started</a>
         </div>
         <div className="hidden md:flex items-center gap-3">
           <a
             href="https://github.com"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-slate-200 text-slate-700 hover:bg-white/80 shadow-sm"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 text-slate-200 hover:bg-white/5"
           >
             <Github className="h-4 w-4" />
             <span className="hidden sm:inline">GitHub</span>
           </a>
           <a
             href="#cta"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-indigo-600 to-blue-600 text-white hover:from-indigo-500 hover:to-blue-500 shadow-md"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-gradient-to-r from-red-600 to-orange-500 text-white hover:from-red-500 hover:to-orange-400 glow-red"
           >
-            <Shield className="h-4 w-4" />
+            <Flame className="h-4 w-4" />
             Launch
           </a>
         </div>
         <button
-          className="md:hidden p-2 rounded-md border border-slate-200 text-slate-700"
+          className="md:hidden p-2 rounded-md border border-white/10 text-slate-200"
           onClick={() => setOpen(!open)}
           aria-label="Toggle Menu"
         >
@@ -43,11 +49,11 @@ export default function Navbar() {
         </button>
       </nav>
       {open && (
-        <div className="md:hidden px-4 pb-4 space-y-2 bg-white/80">
-          <a className="block py-2" href="#features">Features</a>
-          <a className="block py-2" href="#chains">Chains</a>
-          <a className="block py-2" href="#pricing">Pricing</a>
-          <a className="block py-2" href="#cta">Get Started</a>
+        <div className="md:hidden px-4 pb-4 space-y-2 bg-black/60 backdrop-blur">
+          <a className="block py-2 text-slate-200" href="#features">Features</a>
+          <a className="block py-2 text-slate-200" href="#chains">Chains</a>
+          <a className="block py-2 text-slate-200" href="#pricing">Pricing</a>
+          <a className="block py-2 text-slate-200" href="#cta">Get Started</a>
         </div>
       )}
     </header>

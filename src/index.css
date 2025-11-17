@@ -5,42 +5,52 @@
 @layer base {
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-geist: 'Geist', system-ui, sans-serif;
-    --font-geist-mono: 'Geist Mono', monospace;
-    --font-mona: 'Mona Sans', system-ui, sans-serif;
-    --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-manrope: 'Manrope', system-ui, sans-serif;
   }
 
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: radial-gradient(1200px 800px at 10% -10%, rgba(255, 80, 80, 0.15), transparent 60%),
+                radial-gradient(900px 700px at 110% 0%, rgba(255, 120, 40, 0.12), transparent 60%),
+                linear-gradient(180deg, #0b0b0f, #0a0a0d);
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased text-slate-100 bg-transparent;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Motion + effects */
 @layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
+  @keyframes float {
+    0% { transform: translateY(0px) translateX(0px) scale(1); }
+    25% { transform: translateY(-8px) translateX(6px) scale(1.02); }
+    50% { transform: translateY(-2px) translateX(0px) scale(0.99); }
+    75% { transform: translateY(6px) translateX(-6px) scale(1.01); }
+    100% { transform: translateY(0px) translateX(0px) scale(1); }
+  }
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; filter: drop-shadow(0 0 24px rgba(255,80,60,0.35)); }
+    20%, 24%, 55% { opacity: .85; filter: drop-shadow(0 0 14px rgba(255,80,60,0.25)); }
+  }
+  @keyframes aurora {
+    0% { transform: translate(-10%, -10%) rotate(0deg); }
+    50% { transform: translate(10%, 5%) rotate(180deg); }
+    100% { transform: translate(-10%, -10%) rotate(360deg); }
+  }
+  @keyframes gradientX {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
+  .animate-float-slow { animation: float 10s ease-in-out infinite; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-fast { animation: float 3.5s ease-in-out infinite; }
+  .animate-flicker { animation: flicker 2.2s ease-in-out infinite; }
+  .animate-aurora { animation: aurora 22s ease-in-out infinite; }
+  .gradient-animate-x { background-size: 200% 200%; animation: gradientX 10s ease infinite; }
+
+  .glass-dark { @apply bg-white/5 backdrop-blur border border-white/10; }
+  .glow-red { box-shadow: 0 8px 30px rgba(255, 64, 64, 0.25), 0 2px 10px rgba(255, 64, 64, 0.15); }
+  .glow-red-soft { box-shadow: 0 0 0 1px rgba(255, 80, 80, 0.25), 0 10px 30px rgba(255, 60, 60, 0.2); }
 }
